@@ -15,26 +15,28 @@ class UsersList extends Page
     {
         $response = Http::post('http://shino-dev.local/graphql', [
             'query' => '
-                query u{
-  users(first: 10, page: 1) {
-    paginatorInfo {
-      count
-      currentPage
-      firstItem
-      hasMorePages
-      lastItem
-      lastPage
-      perPage
-      total
-    }
-    data {
-      id
-      name
-      email
-      email_verified_at
-    }
-  }
-}
+                query users{
+                    users(first: 10, page: 1) {
+                        paginatorInfo {
+                            count
+                            currentPage
+                            firstItem
+                            hasMorePages
+                            lastItem
+                            lastPage
+                            perPage
+                            total
+                        }
+                        data {
+                            id
+                            name
+                            email
+                            role {
+                                name
+                            }
+                        }
+                    }
+                }
             ',
         ]);
 
